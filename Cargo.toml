@@ -1,0 +1,17 @@
+[package]
+name = "pkcs12"
+description = "PKCS12 parser"
+version = "0.1.0"
+authors = ["Jack Lloyd <jack.lloyd@fortanix.com>"]
+
+[features]
+default = []
+
+rc2_encryption = ["block-modes", "rc2"]
+
+[dependencies]
+yasna = "0.2"
+mbedtls = { git = "ssh://git@bitbucket.org/fortanix/rust-mbedtls.git", branch = "jack/cert-traits" }
+
+block-modes = { version = "0.3", optional = true }
+rc2 = { version = "0.3", optional = true }
