@@ -14,7 +14,7 @@ use yasna::{BERDecodable, BERReader, BERReaderSeq, ASN1Result, ASN1Error, ASN1Er
 use yasna::models::ObjectIdentifier;
 use yasna::tags::*;
 
-use mbedtls::hash::{Type as MdType, pkcs12_pbkdf};
+use mbedtls::hash::{Type as MdType, pbkdf_pkcs12};
 use mbedtls::cipher::{Cipher, Decryption, Traditional, Fresh};
 use mbedtls::cipher::raw::{CipherId, CipherMode};
 use mbedtls::Error as MbedtlsError;
@@ -558,8 +558,8 @@ fn decrypt_data(ciphertext: &[u8],
     let mut cipher_key = vec![0; key_len as usize];
     let mut cipher_iv = vec![0; 8]; // Either 3DES or RC2
 
-    pkcs12_pbkdf(MdType::Sha1, passphrase, &pbe_params.salt, 1, pbe_params.iterations, &mut cipher_key).unwrap();
-    pkcs12_pbkdf(MdType::Sha1, passphrase, &pbe_params.salt, 2, pbe_params.iterations, &mut cipher_iv).unwrap();
+    pbkdf_pkcs12(MdType::Sha1, passphrase, &pbe_params.salt, 1, pbe_params.iterations, &mut cipher_key).unwrap();
+    pbkdf_pkcs12(MdType::Sha1, passphrase, &pbe_params.salt, 2, pbe_params.iterations, &mut cipher_iv).unwrap();
 
     if cipher_algo == "3DES" {
         return decrypt_3des(ciphertext, &cipher_key, &cipher_iv);
