@@ -3,6 +3,10 @@ name = "pkcs12"
 description = "PKCS12 parser"
 version = "0.1.0"
 authors = ["Jack Lloyd <jack.lloyd@fortanix.com>"]
+license = "Apache-2.0/GPL-2.0+"
+description = "Parse PKCS12/PFX files"
+repository = "https://github.com/fortanix/rust-pkcs12"
+keywords = ["pkcs12", "cryptography"]
 
 [features]
 default = []
