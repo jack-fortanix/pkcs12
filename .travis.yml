@@ -1,0 +1,18 @@
+branches:
+  only:
+    - master
+language: rust
+dist: xenial
+rust:
+  - stable
+  - beta
+matrix:
+  allow_failures:
+  - rust: beta
+env:
+  global:
+    - RUST_BACKTRACE=1
+script:
+  - cargo test
+  - cargo test --features rc2_encryption
+

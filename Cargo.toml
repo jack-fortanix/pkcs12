@@ -11,7 +11,7 @@ rc2_encryption = ["block-modes", "rc2"]
 
 [dependencies]
 yasna = "0.2"
-mbedtls = { git = "https://github.com/jack-fortanix/rust-mbedtls.git", branch = "jack/cert-debug-and-clone" }
+mbedtls = { git = "https://github.com/fortanix/rust-mbedtls.git" }
 
 block-modes = { version = "0.3", optional = true }
 rc2 = { version = "0.3", optional = true }
